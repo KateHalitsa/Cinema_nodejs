@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список  категорий</title>
+    <meta charset="utf-8" />    
+    <link rel="stylesheet" href="../style.css"> 
+    
+</head>
+<body>
+    {{> menu}}
+    
+    <h1>Список категорий(количество категорий = {{categories.length}})</h1>
+    <p><a href="/category_edit/0">Добавить категорию</a></p>
+    <table >
+        <tr><th>Название</th><th></th></tr>
+        {{#each categories}}
+            <tr id="{{this.id}}" class="tr">
+                <td><a href="/category_edit/{{this.category_id}}">{{this.name}}</a></td>                
+                <td>                    
+                    <form action="/category_delete" method="POST" style="display:inline;">
+                        <input type="hidden" name="id" value="{{this.category_id}}"> 
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</body>
+<html>

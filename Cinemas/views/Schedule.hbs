@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style.css">
+    <title>Киноуголок Главная</title>
+    
+</head>
+<body>
+  
+  {{> header}}
+  {{> currentuser}}
+
+  <main>
+ 
+  <content id="schedule">
+     <nav id="schedule"></nav>
+     <h2>{{film.title}}</h2>
+   <img id="poster"  src="/ImageDB/film_{{film.film_id}}.jpg" alt="poster">
+            <div class="description">
+          <p></p>
+          <p></p>
+          <p></p>
+          <p>Режисер: {{film.director}}</p>
+          <p>Продолжительность: {{film.length}} мин</p>
+         </div>
+
+   {{#each movieDays}}
+   <table id="timetable">
+      <tr>
+        <td id="day"> {{this.day}}</td>
+        <td> 
+          <table>
+            {{#each this.cinemas}}
+            <tr>
+              <td id="place" >{{this.name}}</td>
+              <td>
+                <table>
+                  {{#each this.rooms}}
+                  <tr>
+                    <td>{{this.name}}</td>
+                    <td id="time">
+                      {{#each this.sessions}}
+                      <a href="/movie_session/{{this.id}}">{{this.time}}</a><br>
+                      {{/each}}
+                    </td>
+                  </tr>
+                  {{/each}}
+                </table>  
+              </td>
+            </tr>
+            {{/each}}
+          </table>
+        </td>
+      </tr>
+  </table>
+   {{/each}}
+   {{#unless movieDays.length}}
+   <table id="timetable">
+      <tr>
+        <td> Расписание для фильма "{{film.title}}" отсутствует </td>
+      </tr>
+   </table>
+   {{/unless}}
+
+  <br>
+
+
+    </content></main>
+  <footer></footer>
+  <script src="/public/script.js"></script>
+</body>
+</html>

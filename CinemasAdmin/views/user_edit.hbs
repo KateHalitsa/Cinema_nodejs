@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{user.name}}</title>
+    <meta charset="utf-8" />    
+     <link rel="stylesheet" href="../style.css">  {{!--  --}}
+</head>
+<body>
+   {{> menu}}
+    {{#if user}}
+    <h3>Редактирование пользователя "{{user.name}}"</h3>
+    {{/if}}
+    {{#unless user}}
+    <h3>Новый пользователь</h3>
+    {{/unless}}
+    <table>
+        <tr class="main"> 
+            <td>
+           
+                <form action="/user_edit" method="POST"> <h4 class="film_title">Характеристики пользователя:</h4>
+                    <input type="hidden" name="id" value="{{user.id}}" />
+                    <table>
+                        <tr >
+                            <td align="right"><label>Название:</label></td>
+                            <td><input name="name" class="field" maxlength="128" value="{{user.name}}" /></td>
+                        </tr>
+
+                        <tr >
+                            <td align="right"><label>Пароль:</label></td>
+                            <td>
+                                <input type="password" name="pass" id="pass" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <NOBR>
+                                    <input type="checkbox" onclick="myFunction()" id="showPassword" style="height: 14;"><label for="showPassword"> Show Password</label>
+                                </NOBR>
+                                <script>
+                                function myFunction() {
+                                    var x = document.getElementById("pass");
+                                    if (x.type === "password") {
+                                        x.type = "text";
+                                    } else {
+                                        x.type = "password";
+                                    }
+                                }
+                                </script>                                                                   
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Сохранить" /> </td>   
+                        </tr>        
+                    </table>
+                </form>
+            </td>
+
+            {{#if user}}
+            <td style="vertical-align: top;">
+                <h4>Роли пользователя:</h4>
+                <iframe src="/user_role/{{user.id}}" style="border:none;" width="400" frameborder="0" scrolling="no" 
+                onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+                </iframe>
+            </td>
+            {{/if}}  
+        </tr>
+    </table>
+
+    </br>         
+     <a href="/users">К списку пользователей</a>
+</body>
+<html>

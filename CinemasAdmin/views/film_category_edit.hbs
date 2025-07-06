@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node.js</title>
+    <meta charset="utf-8" />
+     {{!-- <link rel="stylesheet" href="../style.css">   --}}
+</head>
+<body style="margin:0px;">
+    <form action="/film_category" method="post">
+        <input type="hidden" name="filmId" value="{{filmId}}">
+        <input type="hidden" name="action" id="action" value="">
+        <input type="hidden" name="categoryId" id="categoryId" value="">
+
+        <select name="addCategoryId" id="addCategoryId" required>
+        {{#each categories}}    
+            {{#unless this.film_id}}
+            <option value="{{this.category_id}}">{{this.name}}</option>
+            {{/unless}}
+        {{/each}}
+        </select>
+        <button onclick="action.value = 'add'" type="submit">Добавить</button>
+        <br>
+
+        <table>
+        {{#each categories}}            
+            {{#if this.film_id}}
+            <tr>    
+              <td>{{this.name}}</td>
+              <td><button onclick="action.value = 'delete'; categoryId.value = {{this.category_id}}" type="submit">Удалить</button></td>
+            </tr>
+            {{/if}}
+        {{/each}}        
+        </table>
+
+    </form>
+</body>
+<html>

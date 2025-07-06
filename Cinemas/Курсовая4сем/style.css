@@ -1,0 +1,910 @@
+*{
+ font-family:'Trebuchet MS', Helvetica, sans-serif; /**/
+color:rgb(67, 42, 92);
+/*box-sizing: border-box;*/
+}
+a {
+  text-decoration: none; /* Убирает подчеркивание для ссылок */
+ } 
+a p{
+  margin-top: 0px;
+  color:rgba(67, 42, 92, 0.551);
+  font-size: 14px;
+ }
+body{
+    background-image: url( "C:\\Галица Катя\\саипис\\картинки и другие мелочи\\1.jpg"); 
+transform: translate(-50px, -50px,-50px);
+margin: 0%;
+}
+header{  position: relative;
+    background-color: rgb(67, 42, 92);
+    background: linear-gradient(90deg,rgba(67, 42, 92, 0.893) 0%,rgba(244, 208, 137, 0.926) 35%,rgba(244, 208, 137, 0.871) 65%,rgba(67, 42, 92, 0.838)110%);
+    width: 100%;
+    height: 300px;
+    display:block;
+    clear:both;
+ 
+    min-width: 1200px;
+   z-index: 1;
+    }
+    main{/*position: relative;*/
+        width:100%;
+        min-width: 1100px;
+        background: linear-gradient(90deg,rgba(67, 42, 92, 0.893) 0%,rgba(244, 208, 137, 0.926) 35%,rgba(244, 208, 137, 0.871) 65%,rgba(67, 42, 92, 0.838)110%);
+    }
+   
+    nav{
+        background-color: rgb(202, 77, 5);
+        z-index: 3;
+        width: 100%;
+    height: 50px;
+   
+    border-radius: 20px 20px 0 0 ;
+    }
+  content{position: relative;
+    margin-left:15%;
+    width:70%;
+    min-width: 550px;
+        background-color: rgb(249, 206, 137); 
+        height: 100%;
+        display: flex;
+     flex-wrap: wrap;
+    min-height: 600px;
+    border-radius: 20px  ;
+    }
+   
+    left{
+        background-color: rgb(204, 131, 35);
+        width: 15%;
+        height: 100%;
+        float: left;
+         min-width: 250px;
+         position: absolute; 
+  left:0;
+  right:0;
+ /* */
+        
+
+ width: 320px;
+    min-width: 320px;
+    /* фиксируем и выставляем высоту панели на максимум */
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    /* сдвигаем (прячем) панель относительно левого края страницы */
+    left: -320px;
+    /* внутренние отступы */
+    padding: 15px 20px;
+    /* плавный переход смещения панели */
+    -webkit-transition: left 0.3s;
+    -moz-transition: left 0.3s;
+    transition: left 0.3s;
+    /* определяем цвет фона панели */
+   
+    /* поверх других элементов */
+    z-index: 2000;
+        
+    } 
+    .nav-toggle {
+      /* абсолютно позиционируем */
+      position: absolute;
+      /* относительно левого края панели */
+      left: 320px;
+      /* отступ от верхнего края панели */
+      top: 1em;
+      /* внутренние отступы */
+      padding: 0.5em;
+      /* определяем цвет фона переключателя
+       * чаще вчего в соответствии с цветом фона панели
+      */
+      background: inherit;
+      /* цвет текста */
+      color: #dadada;
+      /* вид курсора */
+      cursor: pointer;
+      /* размер шрифта */
+      font-size: 1.2em;
+      line-height: 1;
+      /* всегда поверх других элементов страницы */
+      z-index: 2001;
+      /* анимируем цвет текста при наведении */
+      -webkit-transition: color .25s ease-in-out;
+      -moz-transition: color .25s ease-in-out;
+      transition: color .25s ease-in-out;
+  }
+   
+  /* определяем текст кнопки 
+   * символ Unicode (TRIGRAM FOR HEAVEN)
+  */
+   
+  .nav-toggle:after {
+      content: '\2630';
+      text-decoration: none;
+  }
+   
+  /* цвет текста при наведении */
+   
+  .nav-toggle:hover {
+      color: #f4f4f4;
+  }
+   
+  /**
+   * Скрытый чекбокс (флажок)
+   * невидим и недоступен :)
+   * имя селектора атрибут флажка
+   */
+   
+  [id='nav-toggle'] {
+      position: absolute;
+      display: none;
+  }
+   
+  /**
+   * изменение положения переключателя 
+   * при просмотре на мобильных устройствах
+   * когда навигация раскрыта, распологаем внутри панели
+  */
+   
+  [id='nav-toggle']:checked ~ .left > .nav-toggle {
+      left: auto;
+      right: 2px;
+      top: 1em;
+  }
+   
+  /**
+   * Когда флажок установлен, открывается панель
+   * используем псевдокласс:checked
+   */
+   
+  [id='nav-toggle']:checked ~ .left {
+      left: 0;
+      box-shadow:4px 0px 20px 0px rgba(0,0,0, 0.5);
+      -moz-box-shadow:4px 0px 20px 0px rgba(0,0,0, 0.5);
+      -webkit-box-shadow:4px 0px 20px 0px rgba(0,0,0, 0.5);
+      overflow-y: auto;
+  }
+   
+  /* 
+   * смещение контента страницы
+   * на размер ширины панели,
+   * фишка необязательная, на любителя
+  */
+   
+  [id='nav-toggle']:checked ~ main > article {
+      -webkit-transform: translateX(320px);
+      -moz-transform: translateX(320px);
+      transform: translateX(320px);
+  }
+   
+  /*
+   * изменение символа переключателя,
+   * привычный крестик (MULTIPLICATION X), 
+   * вы можете испльзовать любой другой значок
+  */
+   
+  [id='nav-toggle']:checked ~ .left > .nav-toggle:after {
+      content: '\2715';
+  }
+   
+  /**
+   * профиксим баг в Android <= 4.1.2
+   * см: http://timpietrusky.com/advanced-checkbox-hack
+   */
+   
+ /* body {
+      -webkit-animation: bugfix infinite 1s;
+  }
+   
+  @-webkit-keyframes bugfix {
+      to {
+        padding: 0;
+      }
+  }*/
+   
+  /**
+   * позаботьтимся о средних и маленьких экранах
+   * мобильных устройств
+   */
+   
+  /*@media screen and (min-width: 320px) {
+      html,
+      body {
+        margin: 0;
+        overflow-x: hidden;
+      }
+  }
+   
+  @media screen and (max-width: 320px) {
+      html,
+      body {
+        margin: 0;
+        overflow-x: hidden;
+      }
+      .left {
+        width: 100%;
+        box-shadow: none
+      }
+  }*/
+   
+  /**
+   * Формируем стиль заголовка (логотип) панели 
+  */
+   
+  .left h2 {
+      width: 90%;
+      padding: 0;
+      margin: 10px 0;
+      text-align: center;
+      text-shadow: rgba(255, 255, 255, .1) -1px -1px 1px, rgba(0, 0, 0, .5) 1px 1px 1px;
+      font-size: 1.3em;
+      line-height: 1.3em;
+      opacity: 0;
+      transform: scale(0.1, 0.1);
+      -ms-transform: scale(0.1, 0.1);
+      -moz-transform: scale(0.1, 0.1);
+      -webkit-transform: scale(0.1, 0.1);
+      transform-origin: 0% 0%;
+      -ms-transform-origin: 0% 0%;
+      -moz-transform-origin: 0% 0%;
+      -webkit-transform-origin: 0% 0%;
+      transition: opacity 0.8s, transform 0.8s;
+      -ms-transition: opacity 0.8s, -ms-transform 0.8s;
+      -moz-transition: opacity 0.8s, -moz-transform 0.8s;
+      -webkit-transition: opacity 0.8s, -webkit-transform 0.8s;
+  }
+   
+  .left h2 a {
+      color: #dadada;
+      text-decoration: none;
+      text-transform: uppercase;
+  }
+   
+   
+  /*плавное появление заголовка (логотипа) при раскрытии панели */
+   
+  [id='nav-toggle']:checked ~ .left h2 {
+      opacity: 1;
+      transform: scale(1, 1);
+      -ms-transform: scale(1, 1);
+      -moz-transform: scale(1, 1);
+      -webkit-transform: scale(1, 1);
+  }
+   
+  /**
+   * формируем непосредственно само меню
+   * используем неупорядоченный список для пунктов меню
+   * прикрутим трансфомации и плавные переходы
+   */
+   
+  .left > ul {
+      display: block;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+  }
+   
+  .left > ul > li {
+      line-height: 2.5;
+      opacity: 0;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      -webkit-transition: opacity .5s .1s, -webkit-transform .5s .1s;
+      -moz-transition: opacity .5s .1s, -moz-transform .5s .1s;
+      -ms-transition: opacity .5s .1s, -ms-transform .5s .1s;
+      transition: opacity .5s .1s, transform .5s .1s;
+  }
+   
+  [id='nav-toggle']:checked ~ .left > ul > li {
+      opacity: 1;
+      -webkit-transform: translateX(0);
+      -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+      transform: translateX(0);
+  }
+   
+  /* определяем интервалы появления пунктов меню */
+   
+  .left > ul > li:nth-child(2) {
+      -webkit-transition: opacity .5s .2s, -webkit-transform .5s .2s;
+      transition: opacity .5s .2s, transform .5s .2s;
+  }
+   
+  .left > ul > li:nth-child(3) {
+      -webkit-transition: opacity .5s .3s, -webkit-transform .5s .3s;
+      transition: opacity .5s .3s, transform .5s .3s;
+  }
+   
+  .left > ul > li:nth-child(4) {
+      -webkit-transition: opacity .5s .4s, -webkit-transform .5s .4s;
+      transition: opacity .5s .4s, transform .5s .4s;
+  }
+   
+  .left > ul > li:nth-child(5) {
+      -webkit-transition: opacity .5s .5s, -webkit-transform .5s .5s;
+      transition: opacity .5s .5s, transform .5s .5s;
+  }
+   
+  .left > ul > li:nth-child(6) {
+      -webkit-transition: opacity .5s .6s, -webkit-transform .5s .6s;
+      transition: opacity .5s .6s, transform .5s .6s;
+  }
+   
+  .left > ul > li:nth-child(7) {
+      -webkit-transition: opacity .5s .7s, -webkit-transform .5s .7s;
+      transition: opacity .5s .7s, transform .5s .7s;
+  }
+   
+   
+  /**
+   * оформление ссылок пунктов меню
+   */
+   
+  .left > ul > li > a {
+      display: inline-block;
+      position: relative;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1.2em;
+      color: #dadada;
+      width: 100%;
+      text-decoration: none;
+      /* плавный переход */
+      -webkit-transition: color .5s ease, padding .5s ease;
+      -moz-transition: color .5s ease, padding .5s ease;
+      transition: color .5s ease, padding .5s ease;
+  }
+   
+  /**
+   * состояние ссылок меню при наведении
+   */
+   
+  .left > ul > li > a:hover,
+  .left > ul > li > a:focus {
+      color: white;
+      padding-left: 15px;
+  }
+   
+  /**
+   * линия подчеркивания ссылок меню
+   */
+   
+  .left > ul > li > a:before {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      width: 100%;
+      -webkit-transition: width 0s ease;
+      transition: width 0s ease;
+  }
+   
+  .left > ul > li > a:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: 100%;
+      background: #fffb88;
+      -webkit-transition: width .5s ease;
+      transition: width .5s ease;
+  }
+   
+  /**
+   * анимируем линию подчеркивания 
+   * ссылок при наведении
+   */
+   
+  .left > ul > li > a:hover:before {
+      width: 0%;
+      background: #fffb88;
+      -webkit-transition: width .5s ease;
+      transition: width .5s ease;
+  }
+   
+  .left > ul > li > a:hover:after {
+      width: 0%;
+      background: transparent;
+      -webkit-transition: width 0s ease;
+      transition: width 0s ease;
+  }
+
+
+
+
+
+    
+ 
+  right{
+         width: 15%;
+         background-color: rgb(204, 131, 35);
+    height:100%;
+    float: right;
+    position: absolute; 
+    right:0;
+   
+    }
+  
+    img{
+    position: relative;
+        width: 550px; 
+        height: 100%;
+     }
+     footer{
+        position: relative;
+        background-color:rgb(67, 42, 92);
+        width:100%;
+        height: 150px; 
+        display:block;
+        clear:both;
+        margin-right:-5%;
+    min-width: 800px;
+    z-index: 13;
+   bottom: auto;
+    }
+    #film{
+        margin-left:5px;
+        width:150px;
+        height:200px; ;
+    }
+
+    /* Шапка*/ 
+    
+      .mySlides  {display: none;
+        position: relative;
+         width:500px;
+        height: 200px;
+        top: 10px;
+       
+       filter: brightness(100%);
+    z-index: 1;
+         }
+ header img {vertical-align: middle; border-radius: 5px;
+       }
+.catsDogs{
+    position: relative;
+    z-index: 2;
+    width:550px;
+    height: 250px;
+ top: auto;
+ bottom: 145px;
+ filter: brightness(150%)
+}
+
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+        height: 300px;
+       left:15%; 
+      }
+      .active {
+        background-color: #717171;
+      }
+    
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+      
+      @-webkit-keyframes fade {
+        from {opacity: .4} 
+        to {opacity: 1}
+      }
+      
+      @keyframes fade {
+        from {opacity: .4} 
+        to {opacity: 1}
+      }
+
+      table{
+        width: 100%;
+        height: 100%;
+      }
+      td{
+     padding: 20px;
+       /* border:2px solid ;*/
+        width:180px;
+        height:250px; 
+      }
+      #poster{
+        width:250px;
+        height:300px;
+  padding-left:20px;
+      }
+      h2{
+        width:100%;
+        padding-left:20px;
+      }
+      button{
+        width:250px;
+        height:50px;
+        /**/position: relative;
+        top: 30px;
+        left:-255px;
+        border-radius: 20px;
+        background-color: rgb(180, 180, 254);
+        border: 5px solid lavender;
+        font: 20px sans-serif ;
+       color:lavender;
+      }
+      .plot{
+        position: relative;
+        top:20px;
+        width: 100%;
+      }
+      #cine-film{
+        position: relative;
+        top:10px;
+        display: block;
+    margin-left: auto;
+    margin-right: auto;
+        padding-bottom: 10px;
+        z-index: 13;
+      }
+     /* video{
+        width:600;
+        position: relative;
+       top: -160px;
+      }*/
+      iframe{
+        position: relative;
+       top:-180px;
+      /* */display: block;
+         margin-left: auto;
+        margin-right: auto; 
+        
+        
+      }
+ .description{position: relative;
+float: right;
+right: 20%;
+  }
+  .pictures,.cadrs, .buttons{
+    display: inline-block;
+    position: relative;	
+    left: 0px;
+    top:-146px;
+    
+    display: block;
+         margin-left: auto;
+        margin-right: auto; 
+         padding-bottom: 10px;
+    white-space: nowrap;
+    text-align: center;
+    z-index: 10;
+  } /**/
+  
+  .buttons{  
+    left: 0px;
+    top:-280px;
+ 
+    background-color: #99999900;
+    z-index: 15;
+  }
+  .buttons div,.cadrs img{
+    display: inline-block;
+    margin: 1px;
+    width: 177px;
+    height: 120px;
+   white-space: nowrap;
+    z-index:19;
+    border-radius: 5px;
+    background-color: #db4a4a00;
+  }
+  .pictures img{
+    display: none;/**/
+   /* width: 600px;
+    height: 300px;*/
+    position: relative;
+
+   
+  }
+  #pic{  display:block;
+    display: none;
+   
+    position: relative;
+    top: -50px;
+  }
+   /* :focus { outline: 1px dashed green; }
+  
+img[id^="cadr"]:focus{
+z-index: 15;
+width: 250px;
+height: 100px;
+  }
+  .cadrs:focus{
+    z-index: 1;
+   
+      }*/
+    /*Рассписание*/
+  #schedule img{
+width: 200px;
+height: 260px;
+top:10px;/**/
+float: left; /* Обтекание картинки по левому краю */
+    padding-left: 10px; /* Отступ слева */
+    padding-bottom: 10px; /* Отступ снизу */
+  }
+  #schedule h2{ 
+      /*position: relative;*/
+    width:60%;
+   
+    min-width: 100px;
+    padding-left:10px;
+  }
+ 
+ #timetable {
+ 
+    width:100%;
+    min-width: 450px;
+    border: 4px solid rgb(158, 113, 231);
+    height: 100%;
+    background-color: lavender; 
+     margin-left: 10px;
+     margin-right: 10px;
+     border-radius: 20px;
+  }
+  #timetable td{
+    padding: 10px;
+    height: 30px;
+  }
+
+  /*Зал*/
+ hall{
+    position: relative;
+    background-color:lavender; 
+   
+    width: 750px;
+    height: 650px;
+    display:block;
+    clear:both;
+top: 30px;
+    margin-left: auto;
+   margin-right: auto; 
+   border-radius: 20px;
+  /* text-align: center;*/
+  }
+  hall h2{
+    position: relative;
+   /**/
+    text-align: center;
+   /* display: inline-block;*/
+  } 
+
+  .cinemaHall {
+   /* */ 
+   /**/position: relative;
+   text-align: center;
+ 
+    display: inline-block;
+    vertical-align: top;
+    width: 500px;
+   
+    margin: auto;
+
+  }
+  .seat {
+    height: 25px;
+    width: 25px;
+    border-radius: 15px;
+    margin-right: 8px;
+    background-color: #999999;
+    display: inline-block;
+    cursor: pointer;
+    
+  }
+  .passageBetween {
+    height: 5px;
+    width: 100%;
+    display: block;
+  }
+  .bay {
+    background-color: red;
+  }
+  .result {
+    font-size: 17px;
+    display: inline-block;
+    width: 150px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-right: 5px;
+    padding-left: 10px;
+  }
+  .plot{
+   
+    padding: 30px;
+    text-align :justify;
+    text-indent : 25px;
+  }
+  #mascot{
+    position: absolute;
+    top: 0px;
+    left:0px;
+    width: 220px;
+    height: 100px;
+    z-index: 19;
+  }
+  button#order{
+    position:absolute; /* добавили */
+    bottom: 10px; /* добавили */
+    right: 10px ;
+    top: auto;
+    left:auto;
+  }
+  figcaption{
+
+  }
+
+ /*Поіск*/ 
+  form {
+    /**/position: relative;
+    width: 300px;
+    margin: 0 auto;
+    float: right;
+    right: 70px;
+    top: 5px;
+  }
+  input {
+    width: 100%;
+    height: 35px;
+    padding-left: 10px;
+    border: 2px solid#f0cb64;
+    border-radius: 5px;
+    outline: none;
+    background: #F9F0DA;
+    color: #9E9C9C;
+  }
+  button#search{
+    float: right;
+    position: relative; 
+    top: -40px;
+    left:60px;/**/
+    width: 35px;
+    height:  35px;
+    border: none;
+    background: #f0cb64;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    z-index: 200;
+  }
+  button#search::before {
+    content: "\1F50D";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #F9F0DA;
+  }
+
+/**/
+form{
+  position: relative;
+  top:auto;
+ bottom: 100px;
+ left:10px;
+  /* background-color: #f4f4f482;*/
+  height: 100px;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mark{
+
+  position: relative;
+  top:0px;
+  width: 550px;
+  height: 100px;
+  border-radius: 20px  ;
+  background-color: #f4f4f482;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  .rating-area {
+
+    position: absolute;
+    top: -50px;/**/
+    overflow: hidden;
+    width: 230px;
+    height: 40px;
+    border-color: #f0cb64;
+    border-radius: 20px  ;
+    background-color: #f4f4f4;
+   /* display: block;margin-right: auto; */
+   
+  }
+  .rating-area:not(:checked) > input {
+    display: none;
+  }
+  .rating-area:not(:checked) > label {
+    float: right;
+    width: 42px;
+    padding: 0;
+    cursor: pointer;
+    font-size: 32px;
+    line-height: 32px;
+    color: lightgrey;
+    text-shadow: 1px 1px #bbb;
+  }
+  .rating-area:not(:checked) > label:before {
+    content: '★';
+  }
+  .rating-area > input:checked ~ label {
+    color: gold;
+    text-shadow: 1px 1px #c60;
+  }
+  .rating-area:not(:checked) > label:hover,
+  .rating-area:not(:checked) > label:hover ~ label {
+    color: gold;
+  }
+  .rating-area > input:checked + label:hover,
+  .rating-area > input:checked + label:hover ~ label,
+  .rating-area > input:checked ~ label:hover,
+  .rating-area > input:checked ~ label:hover ~ label,
+  .rating-area > label:hover ~ input:checked ~ label {
+    color: gold;
+    text-shadow: 1px 1px goldenrod;
+  }
+  .rate-area > label:active {
+    position: relative;
+  }
+  .emotions{
+    position:relative;
+    top:10px;
+
+  }
+  [value=anger] label img{
+  position:relative;
+    top:10px;
+}
+  .emotions>input{
+    margin-right: 10px;
+    height: 10px;
+ 
+    display: inline-block;
+  }
+  /* #joy> label:before {
+    display: inline-block;
+  content:url(C:/Галица Катя/саипис/картинки и другие мелочи/восхищение (1).png);
+ background:url("C:\\Галица Катя\\саипис\\картинки и другие мелочи\\восхищение (1).png")0 0 no-repeat;
+  width: 20px;
+  }*/
+
+  .emotions:not(:checked) > input {
+    display: none;
+  }
+  .emotions:not(:checked) > label {
+    float: left;
+    width: 42px;
+    padding-right: 60px;
+    cursor: pointer;
+    font-size: 32px;
+    line-height: 32px;
+  }
+ 
+  [type=radio] {
+    display: none;
+  }
+label > img {
+  
+  left:10px;
+    width: 80px;
+    height: 80px;
+  
+  }
+  #emotion{
+     padding:  50px;
+  }
+  label[for=anger] > img {
+    position: relative;
+    top:-15px;
+  }

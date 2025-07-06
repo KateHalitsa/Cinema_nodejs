@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{film.title}}</title>
+    <meta charset="utf-8" />    
+     <link rel="stylesheet" href="../style.css">  {{!--  --}}
+</head>
+<body>
+   {{> menu}}
+    {{#if film}}
+    <h3>Редактирование фильма "{{film.title}}"</h3>
+    {{/if}}
+    {{#unless film}}
+    <h3>Новый фильм</h3>
+    {{/unless}}
+    <table>
+        <tr class="main"> <td>
+           
+     <form action="/film_edit" method="POST"> <h4 class="film_title">Характеристики фильма:</h4>
+        <input type="hidden" name="id" value="{{film.film_id}}" />
+        <table>
+            <tr >
+                <td align="right"><label>Название:</label></td>
+                <td><input name="title" class="field" maxlength="128" value="{{film.title}}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><label>Описание:</label><br>
+                <textarea name="description" rows="10" cols="45">{{film.description}}</textarea></td>
+            </tr>
+            <tr>
+                <td align="right"><label>Выпущен (год выпуска):</label></td>
+                <td><input name="release_year" class="field" value="{{film.release_year}}" /></td>
+            </tr>            
+
+            <tr>
+                <td align="right"><label>Длительность (минут):</label></td>
+                <td><input name="length"  class="field" maxlength="50" value="{{film.length}}"/></td>
+            </tr>
+
+            <tr>
+                <td align="right"><label>Режисер:</label></td>
+                <td><input name="director" class="field" maxlength="128" value="{{film.director}}"/></td>
+            </tr>
+
+            <tr>
+                <td align="right"><label>Видео:</label></td>
+                <td><input name="video_url" class="field" maxlength="1024" value="{{film.video_url}}"/></td>
+            </tr> 
+            
+            <tr>
+               <td></td>
+               <td><input type="submit" value="Сохранить" /> </td>   
+            </tr>        
+        </table>
+     </form>
+     </td>
+
+{{#if film}}
+<td style="vertical-align: top;">
+<h4>Картинки к фильму:</h4>
+<table>
+    <tr>
+        <td align="right">
+            Основная картинка:
+        </td>
+        <td>                                    
+            <iframe src="/image/film_{{film.film_id}}.jpg" style="border:none;" width="230" frameborder="0" scrolling="no" 
+            onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';"></iframe>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="right">
+            Кадр 1:
+        </td>
+        <td>                                    
+            <iframe src="/image/film_{{film.film_id}}_1.jpg" style="border:none;" width="230" frameborder="0" scrolling="no" 
+            onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';"></iframe>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="right">
+            Кадр 2:
+        </td>
+        <td>                                    
+            <iframe src="/image/film_{{film.film_id}}_2.jpg" style="border:none;" width="230" frameborder="0" scrolling="no" 
+            onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';"></iframe>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="right">
+            Кадр 3:
+        </td>
+        <td>                                    
+            <iframe src="/image/film_{{film.film_id}}_3.jpg" style="border:none;" width="230" frameborder="0" scrolling="no" 
+            onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';"></iframe>
+        </td>
+    </tr>            
+</table>
+</td>
+<tr class="main"><td style="vertical-align: top;">
+<h4>Категории фильма:</h4>
+<iframe src="/film_category/{{film.film_id}}" style="border:none;" width="400" frameborder="0" scrolling="no" 
+   onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+</iframe>
+</td>
+
+<td style="vertical-align: top;">
+<h4>Актеры фильма:</h4>
+<iframe src="/film_actor/{{film.film_id}}" style="border:none;" width="400" frameborder="0" scrolling="no" 
+   onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+</iframe>
+</td>
+</tr>
+
+{{/if}}            
+</table>
+
+
+
+    </br>         
+     <a href="/films">К списку фильмов</a>
+</body>
+<html>

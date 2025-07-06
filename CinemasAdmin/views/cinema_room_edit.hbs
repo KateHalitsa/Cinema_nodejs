@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление зала в кинотеатр "{{cinema.name}}"</title>
+    <meta charset="utf-8" />
+     <link rel="stylesheet" href="../style.css">  
+    <style>.field{width:200px;}</style>
+</head>
+<body>
+    {{> menu}}
+    <h1>Редактирование зала в кинотеатре "{{cinema.name}}"</h1>
+     <form action="/cinema_room_edit" method="POST">
+        <input type="hidden" name="id" value="{{cinema_room.id}}" />
+        <input type="hidden" name="cinema_id" value="{{cinema.id}}" />
+        <table>
+            <tr>
+                <td align="right"><label>Название зала:</label></td>
+                <td><input name="name" class="field" maxlength="128" value="{{cinema_room.name}}" /></td>
+            </tr>
+            <tr>
+                <td align="right"><label>Количество рядов:</label></td>
+                <td><input name="rows" class="field" type="number" min="1" max="200" value="{{cinema_room.rows}}"/></td>
+            </tr>
+            <tr>
+                <td align="right"><label>Количество мест:</label></td>
+                <td><input name="seats" class="field" type="number" min="1" max="200" value="{{cinema_room.seats}}"/></td>
+            </tr>                        
+            <tr>
+               <td align="right" colspan="2" ><input type="submit" value="Сохранить" /> </td>   
+            </tr>
+        
+        </table>
+     </form>
+     <a href="/cinema_edit/{{cinema.id}}">К списку залов кинотеатра "{{cinema.name}}" </a>
+</body>
+<html>

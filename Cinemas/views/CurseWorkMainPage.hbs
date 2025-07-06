@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style.css">
+
+    <title>Киноуголок Главная</title>
+
+    <script>
+        function FillFilmTable(aData)
+        {
+          var aTable, aRow, aCell;
+          var aCellNum, aItem;
+
+          var aFilms = aData.films;
+          var aCategory = aData.category; 
+
+          category.innerHTML = aCategory;
+
+          aTable = filmTable; 
+          aTable.innerHTML = "";
+
+          for (var i = 0; i < aFilms.length; i++)
+          {
+            aItem = aFilms[i]
+            aCellNum = i % 4;
+            if (aCellNum == 0)
+            {
+              aRow = document.createElement("TR"); 
+              aTable.appendChild(aRow);
+            }
+            
+            aCell = document.createElement("TD");
+            aCell.style = "vertical-align: top; width:25%";                
+            aRow.appendChild(aCell);
+
+            var aCategories = aItem.categories.join(', ');            
+            var aText = `<a href="/film/${aItem.id}"><img id="film" src="/ImageDB/film_${aItem.id}.jpg"> <figcaption>${aItem.name} (${aItem.year})</figcaption><p>${aCategories}</p></a>`;
+            aCell.innerHTML = aText;                
+          }
+        }
+
+        function loadFilms()
+        {
+          var url = '/mainPageData';
+
+          aSearchInNameParam = searchInName.value;
+
+          var params = [];
+          if (aSearchInNameParam)
+          {
+            params[params.length] = 'searchInName=' + aSearchInNameParam;
+          }
+          var category = location.hash;
+          if (category)
+          {
+            category = category.replace('#', '');
+            if (category.length > 0)
+            {
+              params[params.length] = 'category=' + category;
+            }
+          }
+          params[params.length] = 'sortBy=' + sortBy.value;
+          if (params.length > 0)
+          {
+            url += '?' + params.join('&');
+          }
+
+          fetch(url)
+            .then(res => res.json())
+            .then(aData => FillFilmTable(aData))
+            .catch(err => console.log(err));            
+        }
+
+    </script>    
+    
+</head>
+<body onload="loadFilms()" onhashchange="loadFilms()">
+
+   {{> header}}
+   {{> currentuser}} 
+   
+   <main> 
+    <input type="checkbox" id="nav-toggle" hidden>
+   <left class="left">
+
+    <label  for="nav-toggle" class="nav-toggle" onclick></label>
+        <!-- 
+    Здесь размещаете любую разметку,
+    если это меню, то скорее всего неупорядоченный список <ul>
+    -->
+        <h2 class="logo"> 
+            <a href="/">Категории</a> 
+        </h2>
+        <ul>
+        {{#each categories}}
+             <li><a href="#{{this.category_id}}">{{this.name}}</a>           
+        {{/each}}            
+        </ul>
+   </left>  
+   <!--
+   <right>
+      <adv></adv> 
+    </right>
+    -->
+    <content>
+      
+    <nav> 
+      <category style="top: 15px;position: absolute;left: 20px; color: #f3e6c2;" id="category"></category>    
+
+      <sort style="top: 8px; position: absolute; right: 265px;" >
+      <label for="sortBy" style="color: #f3e6c2;" >Сортировка:</label>
+      <select id="sortBy" onchange="loadFilms()" style="top: auto; width: auto;" >
+        {{#each sortArray}}
+          <option value="{{this.value}}" {{#if this.selected}} selected {{/if}}  >{{this.name}}</option>
+        {{/each}}    
+      </select>
+      </sort>
+
+      <input type="text" id="searchInName" placeholder="Искать здесь..." 
+        style="width: 200px; position: absolute; right: 40px; top: 8px; height: 30px;">
+      <button id="search" onclick="loadFilms();" type="button" 
+        style="position: absolute; right: 10px; left: auto; top: 8px; height: 36px;"></button>
+    
+  </nav>
+
+<table id="filmTable">
+  <tr>
+    <td align="center">       
+      Загрузка ...
+    </td>    
+  </tr>
+</table>
+
+  </content> 
+
+  </main>    
+  <footer></footer>
+ 
+   <script src="/public/script.js"></script>
+</body>
+</html>

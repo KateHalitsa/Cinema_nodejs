@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Выбор даты сеанса</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../style.css">  {{!--  --}}
+</head>
+<body>
+    {{> menu}}     
+    <h2>Расписание фильмов</h2>   
+    <h3>Выбор даты сеанса в зале "{{roomName}}" кинотеатра "{{cinemaName}}"</h3>
+    <form action="/movie_sessions" method="POST">
+      <input type="hidden" id = "step" name="step" value="" /> 
+      <input type="hidden" name="cinemaRoomId" value="{{cinemaRoomId}}" />                 
+      <table>                      
+           {{#if needRequestForSessionDate}}
+           <tr><td style="color: red" colspan="2">Для продолжения: выберите дату сеанса</td></tr>
+           {{/if}}
+           <tr>
+                <td>Дата сеанса:</td>
+                <td><input type="date" name="sessionDate" value="{{sessionDate}}" /></td>           
+           </tr>
+           <tr>
+               <td><button onclick="step.value = 1" type="submit">&lt;&lt;Вернуться</button></td>
+               <td align="right"><button onclick="step.value = 3" type="submit">Далее&gt;&gt;</button></td>   
+            </tr>
+        
+        </table>    
+    </form>
+</body>
+<html>

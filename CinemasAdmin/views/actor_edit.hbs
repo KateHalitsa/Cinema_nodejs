@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{actor.first_name}} {{actor.last_name}}</title>
+    <meta charset="utf-8" />    
+     <link rel="stylesheet" href="../style.css">  {{!--  --}}
+</head>
+<body>
+   {{> menu}}
+    {{#if actor}}
+    <h3>Редактирование актера "{{actor.first_name}} {{actor.last_name}}"</h3>
+    {{/if}}
+    {{#unless actor}}
+    <h3>Новый актер</h3>
+    {{/unless}}
+    <table>
+        <tr class="main"> 
+            <td>
+           
+                <form action="/actor_edit" method="POST"> <h4 class="film_title">Характеристики актера:</h4>
+                    <input type="hidden" name="id" value="{{actor.actor_id}}" />
+                    <table>
+                        <tr >
+                            <td align="right"><label>Имя:</label></td>
+                            <td><input name="first_name" class="field" maxlength="45" value="{{actor.first_name}}" /></td>
+                        </tr>
+                        <tr >
+                            <td align="right"><label>Фамилия:</label></td>
+                            <td><input name="last_name" class="field" maxlength="45" value="{{actor.last_name}}" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Сохранить" /> </td>   
+                        </tr>        
+                    </table>
+                </form>
+            </td>
+
+            {{#if actor}}
+            <td style="vertical-align: top;">
+                <h4>Фотографии актера:</h4>
+                <table>
+                    <tr>
+                        <td align="right">
+                            Основная фотография:
+                        </td>
+                        <td>                                    
+                            <iframe src="/image/actor_{{actor.actor_id}}.jpg" style="border:none;" width="230" frameborder="0" scrolling="no" 
+                            onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';"></iframe>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            {{/if}}  
+        </tr>
+    </table>
+
+    </br>         
+     <a href="/actors">К списку актеров</a>
+</body>
+<html>

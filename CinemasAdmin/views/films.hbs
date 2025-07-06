@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список фильмов</title>
+    <meta charset="utf-8" />
+    {{!-- <link rel="stylesheet" href="/public/style.css"> --}}
+    <link rel="stylesheet" href="../style.css">  
+    
+</head>
+<body>
+    {{> menu}}
+    
+    <h1>Список фильмов (количество фильмов = {{films.length}})</h1>
+    <p><a href="/film_edit/0">Добавить фильм</a></p>
+    <table >
+        <tr><th>Название</th><th></th></tr>
+        {{#each films}}
+            <tr id="{{this.film_id}}" class="tr">
+                <td><a href="/film_edit/{{this.film_id}}">{{this.title}}</a></td>                
+                <td>                    
+                    <form action="delete/{{this.id}}" method="POST" style="display:inline;">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</body>
+<html>

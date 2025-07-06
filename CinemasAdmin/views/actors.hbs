@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список актеров</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../style.css">  
+</head>
+<body>
+    {{> menu}}
+    <h1>Список актеров (количество актеров = {{actors.length}})</h1>
+    <p><a href="/actor_edit/0">Добавить Актера</a></p>
+    <table>        
+        {{#each actors}}
+            <tr>
+                <td><a href="/actor_edit/{{this.actor_id}}">{{this.first_name}} {{this.last_name}} </a></td>                
+                <td>                
+                    <form action="/actor_delete" method="POST" style="display:inline;">
+                        <input type="hidden" name="id" value="{{this.actor_id}}"> 
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</body>
+<html>

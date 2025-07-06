@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node.js</title>
+    <meta charset="utf-8" />
+     {{!-- <link rel="stylesheet" href="../style.css">   --}}
+</head>
+<body style="margin:0px;">
+    <table>
+        <tr>
+            <td>
+                <img src="/uploads/{{imageName}}" width="64"/>        
+            </td>
+            <td>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="fileName" value="{{imageName}}">
+                <input type="file" name="filedata" id="filedata" accept="image/*" onchange="form.submit()" style="display: none;"/>
+                <input type="button" value="Выберите..." onclick="document.getElementById('filedata').click();" />
+                </form>
+            </td>
+        </tr>
+    </table>  
+</body>
+<html>

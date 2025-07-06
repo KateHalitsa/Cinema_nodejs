@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node.js</title>
+    <meta charset="utf-8" />
+     {{!-- <link rel="stylesheet" href="../style.css">   --}}
+</head>
+<body style="margin:0px;">
+    <form action="/user_role" method="post">
+        <input type="hidden" name="userId" value="{{userId}}">
+        <input type="hidden" name="action" id="action" value="">
+        <input type="hidden" name="roleId" id="roleId" value="">
+
+        <select name="addRoleId" id="addRoleId" required>
+        {{#each roles}}    
+            {{#unless this.user_id}}
+            <option value="{{this.id}}">{{this.name}}</option>
+            {{/unless}}
+        {{/each}}
+        </select>
+        <button onclick="action.value = 'add'" type="submit">Добавить</button>
+        <br>
+
+        <table>
+        {{#each roles}}            
+            {{#if this.user_id}}
+            <tr>    
+              <td>{{this.name}}</td>
+              <td><button onclick="action.value = 'delete'; roleId.value = {{this.id}}" type="submit">Удалить</button></td>
+            </tr>
+            {{/if}}
+        {{/each}}        
+        </table>
+
+    </form>
+</body>
+<html>

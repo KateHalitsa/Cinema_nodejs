@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Выбор даты сеанса</title>
+    <meta charset="utf-8" />
+     <link rel="stylesheet" href="../style.css"> {{!--  --}}
+</head>
+<body>
+    {{> menu}}     
+    <h2>Расписание фильмов</h2>   
+    <h3>Сеансы в зале "{{roomName}}" кинотеатра "{{cinemaName}}": {{sessionDateStr}}</h3>
+    <form action="/movie_sessions" method="POST">
+      <input type="hidden" id = "step" name="step" value="" /> 
+      <input type="hidden" name="cinemaRoomId" value="{{cinemaRoomId}}" />
+      <input type="hidden" name="sessionDate" value="{{sessionDate}}"/>                 
+      <input type="hidden" id = "movieSessionId" name="movieSessionId" value="" />
+      <table>
+        <tr>
+            <th>Время</th>
+            <th>Цена</th>
+            <th>Фильм</th>
+            <th>Действие</th>
+        </tr>
+           {{#each sessions}}
+           <tr>
+                <td>{{getHoursMinutes this.session_time}}</td>
+                <td>{{this.ticket_price}}</td>
+                <td>{{this.film_name}}</td>
+                <td><button onclick="step.value = 'edit'; movieSessionId.value ={{this.id}}" type="submit">Редактировать</button></td>
+                <td><button onclick="step.value = 'delete'; movieSessionId.value ={{this.id}}" type="submit">Удалить</button></td>
+           </tr>
+           {{/each}}
+           <tr>
+               <td colspan="2"><button onclick="step.value = 2" type="submit">&lt;&lt; Вернуться</button></td>
+               <td colspan="3" align="right"><button onclick="step.value = 'edit'" type="submit">Добавить сеанс</button></td>   
+            </tr>
+        
+        </table>    
+    </form>
+</body>
+<html>

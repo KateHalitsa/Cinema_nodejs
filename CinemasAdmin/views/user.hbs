@@ -1,0 +1,38 @@
+<html>
+<head>
+    {{!-- <link rel="stylesheet" href="/views/app.css"> --}}
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body style=" background: linear-gradient(to left, #4776E6, #8e54e9);">
+    <login>
+        <form action="/user" method="post">
+            <h2>Login</h2>
+            {{error}}
+            <input type="hidden" name="actionType" id="actionType">
+            <div class="input-field">
+                <input type="text" name="username" id="username" placeholder="Введите имя пользователя" value="{{name}}">
+            </div>
+            <div class="input-field">
+                <input type="password" name="password" id="password" placeholder="Введите пароль">
+            </div>
+            <NOBR>
+            <input type="checkbox" onclick="myFunction()" id="showPassword" style="height: 14;"><label for="showPassword"> Show Password</label>
+            </NOBR>
+            <script>
+            function myFunction() {
+                var x = document.getElementById("password");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+            </script>
+            <input type="submit" value="Вход" onclick="actionType.value = 'login'">
+            {{#if needFirstAdmin}}
+            <input type="submit" value="Регистрация" onclick="actionType.value = 'registration'" >
+            {{/if}}
+        </form>
+    </login>
+</body>
+</html>

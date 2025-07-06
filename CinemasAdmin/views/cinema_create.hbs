@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление кинотеатра</title>
+    <meta charset="utf-8" />
+<link rel="stylesheet" href="../style.css">  
+    <style>.field{width:300px;}</style>
+
+</head>
+<body>
+    {{> menu}}
+    <h1>Добавление кинотеатра</h1>
+     <form method="POST">
+        <table>
+            <tr>
+                <td align="right"><label>Название:</label></td>
+                <td><input name="name" class="field" maxlength="128" /></td>
+            </tr>
+            <tr>
+                <td align="right"><label>Адрес:</label></td>
+                <td><input name="address" class="field" maxlength="1024"/></td>
+            </tr>
+            <tr>
+                <td align="right"><label>Email:</label></td>
+                <td><input name="email" type="email" class="field" maxlength="50"/></td>
+            </tr>
+            <tr>
+               <td align="right" colspan="2" ><input type="submit" value="Сохранить" /> </td>   
+            </tr>
+        
+        </table>
+     </form>
+     <a href="/cinemas">К списку кинотеатров</a>
+</body>
+<html>

@@ -1,0 +1,32 @@
+.cinemaHall {
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .seat {
+    height: 10px;
+    width: 10px;
+    margin-right: 2px;
+    background-color: #999999;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .passageBetween {
+    height: 1px;
+    width: 100%;
+    display: block;
+  }
+  .bay {
+    background-color: red;
+  }
+  .result {
+    font-size: 10px;
+    display: inline-block;
+    width: 90px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-right: 5px;
+  }
+  img[id]{
+
+  }

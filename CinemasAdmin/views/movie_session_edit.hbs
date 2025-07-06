@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Выбор даты сеанса</title>
+    <meta charset="utf-8" />
+     <link rel="stylesheet" href="../style.css">   {{!-- --}}
+</head>
+<body>
+    {{> menu}}     
+    <h2>Расписание фильмов</h2>   
+    <h3>Выбор параметров сеанса <br> в "{{roomName}}" кинотеатра "{{cinemaName}}" {{sessionDateStr}}</h3>
+    <form action="/movie_sessions" method="POST">
+      <input type="hidden" id = "step" name="step" value="" /> 
+      <input type="hidden" name="cinemaRoomId" value="{{cinemaRoomId}}" />
+      <input type="hidden" name="movieSessionId" value="{{movieSessionId}}" />
+      <input type="hidden" name="sessionDate" value="{{getDate sessionDate}}" />
+      <table>                      
+           <tr>
+                <td>Время сеанса:</td>
+                <td><input type="time" name="sessionTime" id="sessionTime" required="true" value="{{getHoursMinutes sessionDate}}" /></td>           
+           </tr>
+           <tr>
+                <td>Стоимость билета:</td>
+                <td><input type="number" name="sessionPrice" id="sessionPrice" required="true" value="{{sessionPrice}}" /></td>           
+           </tr>
+           <tr>
+                <td>Фильм:</td>
+                <td><input list="filmList" name="filmName" id="filmName" required="true" value="{{filmName}}" /></td>           
+                <datalist id="filmList">
+                    {{#each films}}
+                    <option value='{{this.title}}'/>
+                    {{/each}}  
+                </datalist>
+           </tr>
+           <tr>
+               <td><button onclick="step.value = 3; sessionTime.required=false; sessionPrice.required=false; filmName.required=false;" type="submit">&lt;&lt; Вернуться</button>
+               </td>
+               <td align="right"><button onclick="step.value = 'editSave'" type="submit">Сохранить</button></td>   
+            </tr>
+        
+        </table>    
+    </form>
+</body>
+<html>

@@ -1,0 +1,15 @@
+
+<nav><a href="/">Главная</a> 
+  | <a href="/cinemas">Кинотеатры</a>
+  | <a href="/films">Фильмы</a>
+  | <a href="/actors">Актеры</a>  
+  | <a href="/movie_sessions">Расписание фильмов</a>
+  | <a href="/categories">Категории</a>
+  | <a href="/users">Пользователи</a>
+
+  <div class="user"style="white-space: nowrap; position: absolute;  top: 1px;  right: 0px; z-index: 9;">
+    {{#if (getCurrentUser)}}
+      User: {{getCurrentUser}} <a href="/logout">Выйти</a>
+    {{/if}}    
+   </div>  
+ </nav>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style.css">
+    <title>Киноуголок Главная</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/public/script2.js"></script>
+</head>
+
+<body onload="LoadMovieSessionHall({{movieSession.id}})" id="hall">
+<!-- 
+   
+   
+ -->    {{error}}
+  <a href="/"><img id="mascot" src="/public/images/название.png"></a>    
+   <hall>
+     <div style ="text-align:center"><br> Бронирование билета: кинотеатр "<b>{{movieSession.cinema_name}}</b>" зал "<b>{{movieSession.room_name}}</b>", <br>
+          начало сеанса <b>{{sessionTime}}</b>, цена билета: <b>{{movieSession.ticket_price}}</b> руб. <br> 
+          Фильм: <b>"{{movieSession.film_name}}"</b> 
+         </div> 
+    <h2>Экран</h2> 
+
+    <div style="white-space: nowrap; position: absolute;  top: 100px;  left: 10px;">User: {{user}}</div>
+    <div class='result'></div>
+
+    <div id="room" class='cinemaHall zal1'></div>        
+
+    <div id="total" style="white-space: nowrap; position: absolute;  bottom: 22px;  left: 10px;">
+      Количество: <div id="amount" style="display: inline;">0</div><br>
+      Цена: <div id="cost" style="display: inline;">0</div> руб   
+    </div> 
+
+    <button id="order" form="orderForm" type="submit" onclick="CalcTickets()">Заказать</button>
+  </hall> 
+  <form id="orderForm" action="/movie_session_order" method="POST" style = "visibility:hidden; width:0px; left:0px">
+      <input type="hidden" name="movieSessionId" value="{{movieSession.id}}" />
+      <input type="hidden" name="tickets" id="tickets" value="0" />
+  </form>
+</body>
+</html>

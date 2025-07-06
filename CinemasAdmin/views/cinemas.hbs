@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список кинотеатров</title>
+    <meta charset="utf-8" />
+     <link rel="stylesheet" href="../style.css">  
+</head>
+<body>
+    {{> menu}}
+    <h1>Список кинотеатров (количество кинотеатров = {{cinemas.length}})</h1>
+    <p><a href="/cinema_create">Добавить кинотеатр</a></p>
+    <table>        
+        {{#each cinemas}}
+            <tr>
+                <td><a href="/cinema_edit/{{this.id}}">{{this.name}}</a></td>
+                <td>{{this.address}}</td>
+                <td>                    
+                    <form action="cinema_delete" method="POST" style="display:inline;">
+                        <input type="hidden" name="id" value="{{this.id}}" />
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</body>
+<html>

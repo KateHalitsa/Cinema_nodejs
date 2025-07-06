@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="xxx"></ul>
+    <script>
+        const listElement = document.getElementById("xxx");
+        fetch('http://localhost:3001/data')
+            .then(res => res.json())
+            .then(list => list.forEach(item => {
+                const node = document.createElement('li');
+                node.appendChild(document.createTextNode(item.name));
+                listElement.appendChild(node);
+            }))
+            .catch(err => console.log(err));
+    </script>
+</body>
+
+</html>
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/0CKIDbx4WEw" title="Эдвард руки-ножницы - Официальный Трейлер (1990) | HD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

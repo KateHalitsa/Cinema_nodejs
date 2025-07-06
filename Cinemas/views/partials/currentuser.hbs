@@ -1,0 +1,8 @@
+   <div class="user" style="white-space: nowrap;  position: absolute; top: 10px; right: 0px; z-index: 9;  padding: 4px; padding-left: 10px;">
+    {{#if (getCurrentUser)}}
+      User: {{getCurrentUser}} <a href="/logout">Выйти</a>
+    {{/if}}
+    {{#unless (getCurrentUser)}}
+      <a href="/user">Войти</a> 
+    {{/unless}}
+   </div>

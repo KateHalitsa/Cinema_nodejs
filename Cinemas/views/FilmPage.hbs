@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style.css">
+    <title>Киноуголок Главная</title>
+<style>
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color: rgb(202, 77, 5);
+  color: #fff;
+  text-align: center;
+  border-radius: 14px;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 115%;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent rgb(202, 77, 5) transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+</style>    
+</head>
+<body>
+
+{{> header}}
+{{> currentuser}}
+ 
+  <main>
+ 
+  <content >
+     <nav ></nav>
+      <h2>{{film.title}}</h2>
+    <div style="width:300px; height: 350px;">
+         <img id="poster"  src="/ImageDB/film_{{film.film_id}}.jpg" alt="poster"> 
+         <a href="/film_schedule/{{film.film_id}}"><button>Заказать</button></a>
+         </div>
+       
+         <div class="description" >
+          <p></p>
+          <p>Режисер: {{film.director}}</p>
+          <p>Продолжительность: {{film.length}} мин</p>
+          <p>Актеры:<br> {{#each actors}} 
+            - <actor class="tooltip">
+                {{this.name}}
+                <span class="tooltiptext"><img src="/ImageDB/actor_{{this.id}}.jpg" style="width:100%">{{this.name}}</span>              
+              </actor><br> {{/each}}</p>
+         </div>
+    
+   
+    <div class="plot">
+      <p>{{film.description}}</p>
+    </div>
+    <div id="cine-film" tabindex="1" >
+    <img   src="/public/images/кадры.png"alt="cadrs">
+  
+</div>
+<div style="width: 100%;">
+<div class="cadrs">
+
+    <img id="cadr1"  src="/ImageDB/film_{{film.film_id}}_1.jpg"alt="cadr1">
+
+    <img id="cadr2"   src="/ImageDB/film_{{film.film_id}}_2.jpg"alt="cadr2">
+  
+    <img id="cadr3"   src="/ImageDB/film_{{film.film_id}}_3.jpg"alt="cadr3"></div>
+    
+    <div class="buttons">
+      <div id="but1" onclick="watchBetter(pic1)"></div>
+      <div id="but2"onclick="watchBetter(pic2)"></div>
+      <div id="but3"onclick="watchBetter(pic3)"></div>
+  </div>
+</div>
+  <div class="pictures">
+      <img id="pic" src="">
+    <img id="pic1" src="/ImageDB/film_{{film.film_id}}_1.jpg">
+           <img id="pic2" src="/ImageDB/film_{{film.film_id}}_2.jpg">
+           <img id="pic3"  src="/ImageDB/film_{{film.film_id}}_3.jpg"></div>
+    </div>
+       <iframe width="560" height="315" src="{{film.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+ 
+       <form  style="width: 100%;"><div class="mark">
+      <div class="rating-area">
+        <input type="radio" id="star-5" name="rating" value="5">
+        <label for="star-5" title="Оценка «5»"></label>	
+        <input type="radio" id="star-4" name="rating" value="4">
+        <label for="star-4" title="Оценка «4»"></label>    
+        <input type="radio" id="star-3" name="rating" value="3">
+        <label for="star-3" title="Оценка «3»"></label>  
+        <input type="radio" id="star-2" name="rating" value="2">
+        <label for="star-2" title="Оценка «2»"></label>    
+        <input type="radio" id="star-1" name="rating" value="1">
+        <label for="star-1" title="Оценка «1»"></label>
+      </div>
+    <div class="emotions">
+      <input type="radio" id="emotion" name="emotion" value="joy">
+      <label for="joy" title="Радость"><img src="/public/images/восхищение (1).png" alt=""></label>	
+      <input type="radio" id="emotion" name="emotion" value="confusion">
+      <label for="confusion" title="Замешательство"><img  src="/public/images/Черри.png" alt="" style="width: 85px; height: 85px;" ></label>    
+      <input type="radio" id="emotion" name="emotion" value="fear">
+      <label for="fear" title="Страх"><img src="/public/images/Вася.png" alt=""style="width: 90px; height: 90px;"></label>  
+      <input type="radio" id="emotion" name="emotion" value="anger">
+      <label for="anger" title="Гнев"><img src="/public/images/Вульф.png" alt=""style="width: 100px; height: 100px; "></label>    
+      <input type="radio" id="emotion" name="emotion" value="sadness">
+      <label for="sadness" title="Грусть"><img src="/public/images/Фелиция.png" alt=""style="width: 85px; height: 85px; "></label>
+    </div>
+
+
+    </div></form>
+  </content> </main>
+  <footer></footer>
+  <script src="/public/script.js"></script>
+ 
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование кинотеатра "{{cinema.name}}"</title>
+    <meta charset="utf-8" />
+    <style>
+        
+        .field{width:300px;}</style>
+        <link rel="stylesheet" href="../style.css">  
+</head>
+<body>
+    {{> menu}}
+    <h1>Редактирование кинотеатра "{{cinema.name}}"</h1>
+    <table>
+     <tr>   
+     <td style="vertical-align:top">
+     <form action="/cinema_edit" method="POST">
+        <input type="hidden" name="id" value="{{cinema.id}}" />
+        <table>
+            <tr>
+                <td align="right"><label>Название:</label></td>
+                <td><input name="name" class="field" maxlength="128" value="{{cinema.name}}" /></td>
+            </tr>
+            <tr>
+                <td align="right"><label>Адрес:</label></td>
+                <td><input name="address" class="field" maxlength="1024" value="{{cinema.address}}"/></td>
+            </tr>
+            <tr>
+                <td align="right"><label>Email:</label></td>
+                <td><input name="email" type="email" class="field" maxlength="50" value="{{cinema.email}}"/></td>
+            </tr>
+            <tr>
+               <td align="right" colspan="2" ><input type="submit" value="Сохранить" /> </td>   
+            </tr>
+        
+        </table>
+     </form>
+  </td>
+  <td width="10"> </td>
+  <td style="vertical-align:top">
+    <b>Залы кинотеатра "{{cinema.name}}"</b><br>
+    <p><a href="/cinema_room_create/{{cinema.id}}">Добавить зал в кинотеатр "{{cinema.name}}"</a></p>
+    <table>        
+        {{#each cinema_rooms}}
+            <tr>
+                <td><a href="/cinema_room_edit/{{this.id}}">{{this.name}}</a></td>
+                <td> {{this.rows}} <td>x</td><td> {{this.seats}} </td>
+                <td>                    
+                    <form action="/cinema_room_delete" method="POST" style="display:inline;">
+                        <input type="hidden" name="id" value="{{this.id}}" />
+                        <input type="hidden" name="cinema_id" value="{{this.cinema_id}}" />
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+    </td>
+    </tr>
+    </table>
+    <br>
+     <a href="/cinemas">К списку кинотеатров</a>
+</body>
+<html>
